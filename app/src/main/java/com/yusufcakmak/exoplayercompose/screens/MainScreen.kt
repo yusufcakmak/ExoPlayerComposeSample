@@ -10,10 +10,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.yusufcakmak.exoplayercompose.ui.theme.ExoPlayerComposeTheme
 
 @Composable
-fun MainScreen() {
+fun MainScreen(navController : NavController) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -31,7 +33,7 @@ fun MainScreen() {
                     .fillMaxWidth()
                     .padding(top = 32.dp, start = 32.dp, end = 32.dp),
                 onClick = {
-
+                    navController.navigate("video")
                 }
             ) {
                 Text(text = "Video Example")
@@ -54,7 +56,8 @@ fun MainScreen() {
 @Preview(showBackground = true)
 @Composable
 fun MainScreenPreview() {
+    val navController = rememberNavController()
     ExoPlayerComposeTheme {
-        MainScreen()
+        MainScreen(navController)
     }
 }

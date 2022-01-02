@@ -1,6 +1,7 @@
 package com.yusufcakmak.exoplayercompose.screens
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -25,8 +26,11 @@ fun VideoScreen() {
     Scaffold(
         modifier = Modifier.fillMaxSize()
     ) {
-        AndroidView(factory = {
-            playerView
-        })
+        AndroidView(
+            modifier = Modifier.fillMaxSize(),
+            factory = {
+                playerView
+            }
+        )
     }
 }

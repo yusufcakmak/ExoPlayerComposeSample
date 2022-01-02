@@ -6,16 +6,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.ui.PlayerView
 import com.yusufcakmak.exoplayercompose.screens.MainScreen
+import com.yusufcakmak.exoplayercompose.screens.RadioScreen
 import com.yusufcakmak.exoplayercompose.screens.VideoScreen
 import com.yusufcakmak.exoplayercompose.ui.theme.ExoPlayerComposeTheme
 
@@ -23,11 +22,30 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val navController = rememberNavController()
             ExoPlayerComposeTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                    MainScreen()
+                    Navigation(navController = navController)
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun Navigation(navController: NavHostController) {
+    NavHost(
+        navController = navController,
+        startDestination = "main"
+    ) {
+        composable("main") {
+            MainScreen(navController)
+        }
+        composable("video") {
+           VideoScreen()
+        }
+        composable("radio") {
+            RadioScreen()
         }
     }
 }
