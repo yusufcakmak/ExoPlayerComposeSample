@@ -44,7 +44,7 @@ fun MainScreen(navController : NavController) {
                     .fillMaxWidth()
                     .padding(top = 32.dp, start = 32.dp, end = 32.dp),
                 onClick = {
-
+                    navController.navigate("radio")
                 }
             ) {
                 Text(text = "Radio Example")
